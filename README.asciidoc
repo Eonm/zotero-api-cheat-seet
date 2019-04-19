@@ -1,0 +1,105 @@
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+= Zotero API cheat sheet
+
+== Identification
+
+.Obtenir une clé d'API et retrouver l'identifiant de l'utilisateur
+****
+L'identifiant et la clé d'API peuvent être trouvés à l'adresse suivante après connexion : https://www.zotero.org/settings/keys
+****
+
+== Récupération des données bibliographiques
+
+.Récupérer la bibliographie d'un compte privé
+****
+  curl --fail -s --header "Zotero-API-Key:$Z_API_KEY" https://api.zotero.org/users/$Z_USER_ID/items?format=biblatex -o bibfile.bib
+****
+
+.Récupérer la bibliographie d'un compte privé et d'une collection particulière
+****
+  curl --fail -s --header "Zotero-API-Key:$Z_API_KEY" https://api.zotero.org/users/$Z_USER_ID/collections/$Z_COLLECTION_ID/items?format=biblatex -o bibfile.bib
+****
+
+.Récupérer la bibliographie d'un groupe public
+****
+  curl --fail https://api.zotero.org/groups/$Z_GROUP_ID/items?format=biblatex -o bibfile.bib
+****
+
+.Récupérer la bibliographie d'un groupe public et d'une collection particulière
+****
+  curl --fail https://api.zotero.org/groups/$Z_GROUP_ID/collections/$Z_GROUP_COLLECTION/items?format=biblatex -o bibfile.bib
+
+****
+
+TIP: Les identifiants de collection apparaissent dans l'URL du site Zotero lorsque l'on se trouve dans l'onglet My library et lorsqu'une collection est sélectionnée.
+
+TIP: Il n'est pas nécessaire d'avoir une clé d'API pour accéder à la bibliographie d'un groupe public.
+
+== Formats d'export bibliographique (?format=)
+
+[cols=3, options="header"]
+|=====
+|Paramètre
+|Description
+|Format supporté par pandoc-citeproc
+
+|bibtex
+|BibTeX
+^|✔
+
+
+|biblatex
+|BibLaTeX
+^|✔
+
+|bookmarks
+|Netscape Bookmark File Format
+|
+
+|coins
+|COinS
+|
+
+|csljson
+|Citation Style Language data format
+^|✔
+
+|mods
+|MODS
+|
+
+|refer
+|Refer/BibIX
+|
+
+|rdf_bibliontology
+|Bibliographic Ontology RDF
+|
+
+|rdf_dc
+|Unqualified Dublin Core RDF
+|
+
+|rdf_zotero
+|Zotero RDF
+|
+
+|ris
+|RIS
+^|✔
+
+|tei
+|Text Encoding Initiative (TEI)
+|
+
+|wikipedia
+|Wikipedia Citation Templates
+|
+|=====
