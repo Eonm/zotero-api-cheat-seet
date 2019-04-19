@@ -10,29 +10,29 @@ endif::[]
 
 == Identification
 
-.Obtenir une clé d'API et retrouver l'identifiant de l'utilisateur
+*Obtenir une clé d'API et retrouver l'identifiant de l'utilisateur*
 ****
 L'identifiant et la clé d'API peuvent être trouvés à l'adresse suivante après connexion : https://www.zotero.org/settings/keys
 ****
 
 == Récupération des données bibliographiques
 
-.Récupérer la bibliographie d'un compte privé
+*Récupérer la bibliographie d'un compte privé*
 ****
   curl --fail -s --header "Zotero-API-Key:$Z_API_KEY" https://api.zotero.org/users/$Z_USER_ID/items?format=biblatex -o bibfile.bib
 ****
 
-.Récupérer la bibliographie d'un compte privé et d'une collection particulière
+*Récupérer la bibliographie d'un compte privé et d'une collection particulière*
 ****
   curl --fail -s --header "Zotero-API-Key:$Z_API_KEY" https://api.zotero.org/users/$Z_USER_ID/collections/$Z_COLLECTION_ID/items?format=biblatex -o bibfile.bib
 ****
 
-.Récupérer la bibliographie d'un groupe public
+*Récupérer la bibliographie d'un groupe public*
 ****
   curl --fail https://api.zotero.org/groups/$Z_GROUP_ID/items?format=biblatex -o bibfile.bib
 ****
 
-.Récupérer la bibliographie d'un groupe public et d'une collection particulière
+*Récupérer la bibliographie d'un groupe public et d'une collection particulière*
 ****
   curl --fail https://api.zotero.org/groups/$Z_GROUP_ID/collections/$Z_GROUP_COLLECTION/items?format=biblatex -o bibfile.bib
 
